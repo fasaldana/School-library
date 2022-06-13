@@ -1,6 +1,6 @@
 # School library
 
-> Description the project.
+> Ruby project for a school library
 
 ## Built With
 
