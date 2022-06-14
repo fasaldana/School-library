@@ -20,6 +20,8 @@ class Person < Nameable
     @name
   end
 
+  has_many :rental
+
   private
 
   def of_age?

@@ -9,4 +9,6 @@ class Student < Person
   def play_hooky
     '¯\(ツ)/¯'
   end
+
+  belongs_to :classroom
 end
