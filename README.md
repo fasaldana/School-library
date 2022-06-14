@@ -27,6 +27,11 @@ To get a local copy up and running follow these simple example steps.
 
 - Clone the repo.
 
+```
+$ git clone https://github.com/fasaldana/School-library.git`
+$ cd School-library
+```
+
 ### Run
 
 - On your local director run: `ruby main.rb`
