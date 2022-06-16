@@ -21,8 +21,8 @@ class Person < Nameable
     @name
   end
 
-  def add_rental
-    @rentals << rental
+  def add_rental(book, date)
+    Rental.new(book, date, self)
   end
 
   private
