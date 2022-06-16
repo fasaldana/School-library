@@ -10,6 +10,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rentals = []
   end
 
   def can_use_services?
@@ -20,7 +21,9 @@ class Person < Nameable
     @name
   end
 
-  has_many :rental
+  def add_rental
+    @rentals << rental
+  end
 
   private
 

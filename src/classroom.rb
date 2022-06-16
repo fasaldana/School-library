@@ -3,7 +3,11 @@ class Classroom
 
   def initialize(label)
     @label = label
+    @students = []
   end
 
-  has_many :students
+  def add_student(student)
+    @students << student
+    student.classroom(self)
+  end
 end
