@@ -11,8 +11,8 @@ class App
   end
 
   def list_all_books
-    @books.each_with_index do |_books, index|
-      puts "#{index + 1}) title: #{_books.title} - author: #{_books.author}"
+    @books.each_with_index do |books1, index|
+      puts "#{index + 1}) title: #{books1.title} - author: #{books1.author}"
     end
   end
 
