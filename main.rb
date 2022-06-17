@@ -1,6 +1,4 @@
-require_relative 'app'
-
-def resolve_choice(choice); end
+require_relative './src/app'
 
 def user_choice # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
   app = App.new

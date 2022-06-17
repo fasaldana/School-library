@@ -17,8 +17,8 @@ class App
   end
 
   def list_all_people
-    @people.each do |person|
-      puts "[#{person.class}] ID: #{person.id} Name: #{person.name} - Age: #{person.age}"
+    @people.each_with_index do |person, index|
+      puts "[#{index}) #{person.class}] ID: #{person.id} Name: #{person.name} - Age: #{person.age}"
     end
   end
 
