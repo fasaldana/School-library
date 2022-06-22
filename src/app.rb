@@ -2,6 +2,7 @@ require_relative './student'
 require_relative './teacher'
 require_relative './book'
 require_relative './rental'
+require_relative './file_handle'
 
 class App
   def initialize(books = [], people = [], rentals = [])
@@ -48,5 +49,21 @@ class App
         puts "Date: #{rental.date} - Book: #{rental.book.title} - Person: #{rental.person.name}"
       end
     end
+  end
+
+  def load_data
+    file_handle = FileHandle.new
+    if(file_handle.read_file)
+      @books = file_handle.read_file
+    end
+  end
+
+  def save_info
+    book = []
+    file_handle = FileHandle.new
+    @books.each_with_index do |books1, index|
+      book.append({id: index + 1, title: books1.title, author: books1.author})
+    end
+    file_handle.create_file(book)
   end
 end

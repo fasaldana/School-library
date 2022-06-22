@@ -30,6 +30,7 @@ def user_choice # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLe
     when 6
       list_all_rentals_input
     when 7
+      @app.save_info
       puts 'Thank you for using School Library App!'
     else
       puts 'Invalid option, please try again!'
@@ -111,6 +112,7 @@ def list_all_rentals_input
 end
 
 def main
+  @app.load_data
   user_choice
 end
 
