@@ -1,15 +1,15 @@
 require 'json'
 
 class FileHandle
-  def create_file (book)
-    p book
+  def create_file (books)
+    p books
     File.open("book.json", "w") do |f|
-        f.write(book.to_json)
+      f.write(JSON.pretty_generate(books))
     end
   end
 
   def read_file
-    file = File.open "./book.json"
+    file = File.open('book.json', 'r')
     data = JSON.load file
     file.close
   end

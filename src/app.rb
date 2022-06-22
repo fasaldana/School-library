@@ -59,11 +59,12 @@ class App
   end
 
   def save_info
-    book = []
+    books = []
     file_handle = FileHandle.new
-    @books.each_with_index do |books1, index|
-      book.append({id: index + 1, title: books1.title, author: books1.author})
+    @books.each_with_index do |book, index|
+      obj = {id: index, title: book.title, author: book.author}
+      books.push(obj)
     end
-    file_handle.create_file(book)
+    file_handle.create_file(books)
   end
 end
