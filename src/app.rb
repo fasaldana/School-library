@@ -22,12 +22,12 @@ class App
     end
   end
 
-  def create_person(choice, age, name, parent_permission = true, specialization = nil)
+  def create_person(choice, age, name, specialization, parent_permission: true)
     if choice == 1
       student = Student.new(age, name, parent_permission: parent_permission)
       @people << student unless @people.include?(student)
     else
-      teacher = Teacher.new(age, specialization, name)
+      teacher = Teacher.new(age, name, specialization)
       @people << teacher unless @people.include?(teacher)
     end
   end

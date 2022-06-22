@@ -62,7 +62,7 @@ def create_student
   name = gets.chomp.capitalize
   puts 'Has parent permission? (y/n): '
   parent_permission = gets.chomp.downcase == 'y'
-  @app.create_person(1, age, name, parent_permission)
+  @app.create_person(1, age, name, nil, parent_permission: parent_permission)
   puts 'Student created successfully.'
 end
 
