@@ -8,7 +8,7 @@ class FileHandle
   def read_book
     if File.exist?('book.json')
       file = File.open './book.json'
-      data = JSON.load file
+      data = JSON.parse file.read
       file.close
     end
     data
@@ -21,7 +21,7 @@ class FileHandle
   def read_person
     if File.exist?('person.json')
       file = File.open './person.json'
-      data = JSON.load file
+      data = JSON.parse file.read
       file.close
     end
     data
@@ -34,7 +34,7 @@ class FileHandle
   def read_rental
     if File.exist?('rental.json')
       file = File.open './rental.json'
-      data = JSON.load file
+      data = JSON.parse file.read
       file.close
     end
     data

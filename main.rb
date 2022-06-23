@@ -113,6 +113,7 @@ end
 
 def main
   @app.load_data
+  @app.load_rental_data
   user_choice
 end
 

@@ -1,3 +1,14 @@
 [
-
+  {
+    "id": 1,
+    "date": "2022",
+    "book_index": 0,
+    "person_index": 0
+  },
+  {
+    "id": 2,
+    "date": "2023",
+    "book_index": 1,
+    "person_index": 1
+  }
 ]
