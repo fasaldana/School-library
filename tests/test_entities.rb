@@ -90,5 +90,23 @@ RSpec.describe Decorator do
     nameable = Decorator.new(Person.new(20, 'John'))
     expect(nameable.class).to eq(Decorator)
   end
-  it
+
+  it 'should have correct name' do
+    correct_name = Decorator.new(Person.new('John', 'John'))
+    expect(correct_name.class).to eq(Decorator)
+  end
+end
+
+RSpec.describe CapitalizedDecorator do
+  it 'should start with a capital letter' do
+    book = CapitalizedDecorator.new(Book.new('Gifted', 'Ben'))
+    expect(book.class).to eq(CapitalizedDecorator)
+  end
+end
+
+RSpec.describe TrimmerDecorator do
+  it 'should trim the length' do
+    trimmer = TrimmerDecorator.new(Student.new(20, 'Johnmarystewart', parent_permission: true))
+    expect(trimmer.correct_name).to eq('Johnmaryst')
+  end
 end
