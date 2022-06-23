@@ -4,6 +4,7 @@ require_relative '../src/student'
 require_relative '../src/teacher'
 require_relative '../src/rental'
 require_relative '../src/classroom'
+require_relative '../src/decorator'
 
 RSpec.describe Book do
   it 'should be a book' do
@@ -82,4 +83,12 @@ RSpec.describe Rental do
     rental = Rental.new('2020-01-01', Book.new('Ruby', 'John'), Person.new(20, 'John'))
     expect(rental.date).to eq('2020-01-01')
   end
+end
+
+RSpec.describe Decorator do
+  it 'should have nameable' do
+    nameable = Decorator.new(Person.new(20, 'John'))
+    expect(nameable.class).to eq(Decorator)
+  end
+  it
 end
