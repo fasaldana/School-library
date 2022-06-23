@@ -110,3 +110,22 @@ RSpec.describe TrimmerDecorator do
     expect(trimmer.correct_name).to eq('Johnmaryst')
   end
 end
+
+RSpec.describe Classroom do
+  it 'should have a label' do
+    classroom = Classroom.new('2S')
+    expect(classroom.label).to eq('2S')
+  end
+
+  it 'should have students' do
+    classroom = Classroom.new('2S')
+    expect(classroom.students).to eq([])
+  end
+
+  it 'should accept students' do
+    classroom = Classroom.new('2S')
+    student = Student.new(20, 'John', parent_permission: true)
+    classroom.add_student(student)
+    expect(classroom.students).to eq([student])
+  end
+end
