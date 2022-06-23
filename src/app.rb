@@ -28,7 +28,7 @@ class App
       student = Student.new(age, name, parent_permission: parent_permission)
       @people << student unless @people.include?(student)
     else
-      teacher = Teacher.new(age, name, specialization)
+      teacher = Teacher.new(age, specialization, name)
       @people << teacher unless @people.include?(teacher)
     end
   end
@@ -53,47 +53,42 @@ class App
 
   def load_data
     file_handle = FileHandle.new
-    if(file_handle.read_book)
-      file_handle.read_book.each do |book|
-        @books << Book.new(book['title'], book['author'])
-      end
+    file_handle.read_book&.each do |book|
+      @books << Book.new(book['title'], book['author'])
     end
-    if(file_handle.read_person)
-      file_handle.read_person.each do |person|
-        if person['type'] == 'student'
-          @people << Student.new(person['age'], person['name'], parent_permission: person['parent_permission'])
-        else
-          @people << Teacher.new(person['age'], person['name'], person['specialization'])
-        end
-      end
+    file_handle.read_person&.each do |person|
+      @people << if person['type'] == 'student'
+                   Student.new(person['age'], person['name'], parent_permission: person['parent_permission'])
+                 else
+                   Teacher.new(person['age'], person['name'], person['specialization'])
+                 end
     end
-    if(file_handle.read_rental)
-      file_handle.read_rental.each do |rental|
-        @rentals << Rental.new(rental['date'],  rental['book'], rental['person'])
-      end
+    file_handle.read_rental&.each do |rental|
+      @rentals << Rental.new(rental['date'], @books[rental['book_index']], @people[rental['person_index']])
     end
   end
 
   def save_info
-    book = []
+    book_save = []
     person = []
     rental = []
     file_handle = FileHandle.new
     @books.each_with_index do |book, index|
-      obj = {id: index, title: book.title, author: book.author}
-      books.push(obj)
+      book_save << { 'id' => index + 1, 'title' => book.title, 'author' => book.author }
     end
     @people.each_with_index do |person1, index|
-      if(person1.class == Student)
-        person.append({id: index + 1, type: 'student', age: person1.age, name: person1.name, parent_permission: person1.parent_permission})
-      else
-        person.append({id: index + 1, type: 'teacher', age: person1.age, name: person1.name, specialization: person1.specialization})
-      end
+      person << if person1.instance_of?(Student)
+                  { 'id' => index + 1, 'type' => 'student', 'age' => person1.age, 'name' => person1.name,
+                    'parent_permission' => person1.parent_permission }
+                else
+                  { 'id' => index + 1, 'type' => 'teacher', 'age' => person1.age, 'name' => person1.name,
+                    'specialization' => person1.specialization }
+                end
     end
     @rentals.each_with_index do |rental1, index|
-      rental.append({id: index + 1, date: rental1.date, book: rental1.book.title, person: rental1.person.name})
+      rental << { 'id' => index + 1, 'date' => rental1.date}
     end
-    file_handle.create_book(book)
+    file_handle.create_book(book_save)
     file_handle.create_person(person)
     file_handle.create_rental(rental)
   end

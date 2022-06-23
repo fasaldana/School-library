@@ -1,48 +1,42 @@
 require 'json'
 
 class FileHandle
-  def create_book (book)
-    File.open("book.json", "w") do |f|
-      f.write(JSON.pretty_generate(books))
-    end
+  def create_book(book)
+    File.write('book.json', JSON.pretty_generate(book))
   end
 
   def read_book
-    if(File.exist?("book.json"))
-      file = File.open "./book.json"
+    if File.exist?('book.json')
+      file = File.open './book.json'
       data = JSON.load file
       file.close
     end
-    return data
+    data
   end
 
-  def create_person (person)
-    File.open("person.json", "w") do |f|
-        f.write(person.to_json)
-    end
+  def create_person(person)
+    File.write('person.json', JSON.pretty_generate(person))
   end
 
   def read_person
-    if(File.exist?("person.json"))
-      file = File.open "./person.json"
+    if File.exist?('person.json')
+      file = File.open './person.json'
       data = JSON.load file
       file.close
     end
-    return data
+    data
   end
 
-  def create_rental (rental)
-    File.open("rental.json", "w") do |f|
-        f.write(rental.to_json)
-    end
+  def create_rental(rental)
+    File.write('rental.json', JSON.pretty_generate(rental))
   end
 
   def read_rental
-    if(File.exist?("rental.json"))
-      file = File.open "./rental.json"
+    if File.exist?('rental.json')
+      file = File.open './rental.json'
       data = JSON.load file
       file.close
     end
-    return data
+    data
   end
 end
